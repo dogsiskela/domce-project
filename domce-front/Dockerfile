@@ -13,6 +13,10 @@ RUN npm install
 # Copy the rest of the application files
 COPY . .
 
+# Set environment variable during build
+ARG VITE_GOOGLE_MAPS_API
+ENV VITE_GOOGLE_MAPS_API=$VITE_GOOGLE_MAPS_API
+
 # Build the React app
 RUN npm run build --verbose
 
