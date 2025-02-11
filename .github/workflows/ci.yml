@@ -37,3 +37,8 @@ jobs:
           
           docker compose -f docker-compose.yaml build
           docker compose -f docker-compose.yaml push
+
+      - name: Push to dockerhub
+        run: |
+          docker tag ${{ secrets.DOCKER_USERNAME }}/domce-app:latest ${{ secrets.DOCKER_USERNAME }}/domce-app:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/domce-app:latest
