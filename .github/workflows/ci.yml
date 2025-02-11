@@ -31,14 +31,13 @@ jobs:
 
       # Compose build and push
       - name: Build and push Docker images with Compose
+        with: 
+          secrets: |
+            "DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}"
         run: |
           echo "VITE_GOOGLE_MAPS_API=${{ secrets.VITE_GOOGLE_MAPS_API }}" >> .env
           echo "MONGO_CONNECTION_STRING=${{ secrets.MONGO_CONNECTION_STRING }}" >> .env
+          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> .env
           
           docker compose -f docker-compose.yaml build
           docker compose -f docker-compose.yaml push
-
-      - name: Push to dockerhub
-        run: |
-          docker tag ${{ secrets.DOCKER_USERNAME }}/domce-app:latest ${{ secrets.DOCKER_USERNAME }}/domce-app:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/domce-app:latest

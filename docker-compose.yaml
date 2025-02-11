@@ -5,6 +5,7 @@ services:
     build:
       context: ./domce-front 
       dockerfile: Dockerfile
+    image: ${DOCKER_USERNAME}/domce-backend:latest
     ports:
       - "80:80" 
     environment:
@@ -18,6 +19,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    image: "${DOCKER_USERNAME}/domce-frontend:latest"
     ports:
       - "4000:4000" 
     environment:
