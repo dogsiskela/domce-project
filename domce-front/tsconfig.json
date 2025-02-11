@@ -1,4 +1,14 @@
 {
+  "compilerOptions": {
+    "target": "es5",                    // Transpile to ES5 for browser compatibility
+    "lib": ["dom", "es2015"],           // Define the standard libraries
+    "jsx": "react",                     // Enable JSX support for React
+    "moduleResolution": "node",         // Use Node-style module resolution
+    "strict": false,                    // Disable strict type-checking
+    "esModuleInterop": true,            // Allow default imports from non-ESM modules
+    "skipLibCheck": true,               // Skip checking library files
+    "forceConsistentCasingInFileNames": true // Ensure consistent file casing
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

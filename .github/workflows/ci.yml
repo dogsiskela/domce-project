@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger the pipeline on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger the pipeline on pull requests to main branch
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      #  Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Docker Buildx (allows multi-platform builds)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+
+      #  Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Compose build and push
+      - name: Build and push Docker images with Compose
+        run: |
+          echo "VITE_GOOGLE_MAPS_API=${{ secrets.VITE_GOOGLE_MAPS_API }}" >> .env
+          echo "MONGO_CONNECTION_STRING=${{ secrets.MONGO_CONNECTION_STRING }}" >> .env
+          
+          docker-compose -f docker-compose.yml build
+          docker-compose -f docker-compose.yml push

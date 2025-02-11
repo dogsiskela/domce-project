@@ -1,3 +1,6 @@
 venv/
 scripts/.env
 backend/.env
+domce-front/.env
+backend/node_modules
+.env

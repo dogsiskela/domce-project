@@ -43,7 +43,6 @@ def fetch_link(link):
         month, day, year = date_item.split()
         month = months.get(month)
         time_item = text.find('span', class_='pull-right ci-text-right').get_text()
-        print(time_item)
         oglas = {
             "url": url_item,
             "title": title_item,
@@ -52,8 +51,6 @@ def fetch_link(link):
             "images": images_item,
             "price": price_item,
             "currency": currency_item,
-            # "lat": round(random.uniform(41.981256, 42.004422), 6),
-            # "lng": round(random.uniform(21.371459, 21.506766), 6),
         }
         oglas = {**oglas, **descriptions}
         tags_item = text.find('div', class_='tags-area')

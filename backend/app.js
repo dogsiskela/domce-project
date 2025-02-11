@@ -1,7 +1,7 @@
 const express = require("express");
 
-const { apartmentsRouter } = require("../backend/routes/apartments");
-const { userRouter } = require("../backend/routes/user");
+const { apartmentsRouter } = require("./routes/apartments");
+const { userRouter } = require("./routes/user");
 
 const { default: helmet } = require("helmet");
 const bodyParser = require("body-parser");
@@ -14,7 +14,7 @@ app.set("trust proxy", 1);
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "http://localhost:80","http://localhost","localhost"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

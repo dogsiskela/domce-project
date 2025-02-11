@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={
-          <APIProvider apiKey={import.meta.env.MAPS_API} onLoad={() => console.log('Maps API has loaded.')}>
+          <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API} onLoad={() => console.log('Maps API has loaded.')}>
             <MapScreen />
           </APIProvider>
         } />

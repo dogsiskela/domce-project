@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./domce-front 
+      dockerfile: Dockerfile
+    ports:
+      - "80:80" 
+    environment:
+      - VITE_GOOGLE_MAPS_API=${VITE_GOOGLE_MAPS_API}
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000" 
+    environment:
+      - MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge
