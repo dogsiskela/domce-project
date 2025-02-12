@@ -5,6 +5,8 @@ services:
     build:
       context: ./domce-front 
       dockerfile: Dockerfile
+      args:
+        VITE_GOOGLE_MAPS_API: ${VITE_GOOGLE_MAPS_API}
     image: ${DOCKER_USERNAME}/domce-frontend:latest
     ports:
       - "80:80" 
