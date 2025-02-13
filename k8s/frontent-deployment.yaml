@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: domce-frontend
+  namespace: domce-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: domce-frontend
+  template:
+    metadata:
+      labels:
+        app: domce-frontend
+    spec:
+      containers:
+        - name: domce-frontend
+          image: aleksviv/domce-frontend:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_GOOGLE_MAPS_API
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secrets
+                  key: google-maps-api

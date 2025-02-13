@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: domce-backend
+  namespace: domce-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: domce-backend
+  template:
+    metadata:
+      labels:
+        app: domce-backend
+    spec:
+      containers:
+        - name: domce-backend
+          image: aleksviv/domce-backend:latest
+          ports:
+            - containerPort: 4000
+          env:
+            - name: MONGO_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: connection-string

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: domce-backend
+  namespace: domce-app
+spec:
+  selector:
+    app: domce-backend
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
+  type: ClusterIP
